@@ -1,5 +1,6 @@
 #include <iostream>
 #include <deque>
+#include "Element.h"
 
 #if defined WIN32
 #include <freeglut.h>
@@ -12,7 +13,7 @@
 
 using namespace std;
 
-
+const double nonwhitespace = (4.0/5.0);
 
 //-------------------------------------------------------
 // A function to draw the scene
