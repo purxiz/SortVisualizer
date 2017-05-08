@@ -3,7 +3,7 @@
 #include<stdlib.h>
 #include<vector>
 
-enum color {WHITE,GREEN,YELLOW,BLUE};
+enum color {WHITE,GREEN,RED,BLUE};
 
 class Step {
 public:
@@ -57,7 +57,7 @@ public:
   ~Compare(){}
   color getColor(size_t x){
     if(x == i || x == j){
-      return YELLOW;
+      return RED;
     }
     return WHITE;
   }
