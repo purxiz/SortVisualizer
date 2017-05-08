@@ -37,7 +37,7 @@ public:
           glColor3f(0.0, 0.0, 1.0);
         break;
       }
-      glRectf((i+1)*spacing + i*width - 1, -1,  (i+1)*spacing + i * width-1 + width, (float)state[i]/(float)size * 1.98 - .98);
+      glRectf((i+1)*spacing + i*width - 1, -1,  (i+1)*spacing + i * width-1 + width, (float)state[i]/(float)size * 1.98);
     }
   }
 };
