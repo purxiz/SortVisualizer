@@ -1,6 +1,6 @@
 #include <iostream>
 #include <deque>
-#include "Element.h"
+#include "View.h"
 
 #if defined WIN32
 #include <freeglut.h>
@@ -13,7 +13,6 @@
 
 using namespace std;
 
-const double nonwhitespace = (4.0/5.0);
 
 //-------------------------------------------------------
 // A function to draw the scene
@@ -23,12 +22,11 @@ void appDrawScene() {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	// Set background color to white
-	glClearColor(1.0, 1.0, 1.0, 1.0);
+	glClearColor(0, 0, 0, 1.0);
 
 	// Set up the transformations stack
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
-
 
 	// We have been drawing everything to the back buffer
 	// Swap the buffers to see the result of what we drew
@@ -48,11 +46,11 @@ void appDrawScene() {
 //-------------------------------------------------------
 void appKeyboardFunc(unsigned char key, int x, int y) {
 	// Define what should happen for a given key press
-	switch (key) {
 
+	switch (key) {
 		// Escape was pressed. Quit the program
-	case 27:
-		exit(0);
+		case 27:
+			exit(0);
 		break;
 	}
 	// After all the state changes, redraw the scene
