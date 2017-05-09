@@ -17,8 +17,8 @@ public:
   }
   Replay& operator++(){
     if(current != steps.end()&&current!=(--steps.end())){
-      (*current)->execute(state);
       current++;
+      (*current)->execute(state);
     }
     return *this;
   }

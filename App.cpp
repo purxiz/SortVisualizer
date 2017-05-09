@@ -80,7 +80,6 @@ void App::draw() {
 }
 
 void App::keyPress(unsigned char key) {
-    std::cout << "Pressed: " <<(int) key << std::endl;
     if(key == 'h'){
       rep->reset();
       rep = &heap;
@@ -96,7 +95,8 @@ void App::keyPress(unsigned char key) {
     }else if(key == 27){
         // Exit the app when Esc key is pressed
         exit(0);
-    }
+    }else{return;}
+    redraw();
 }
 
 void App::specialKeyPress(int key) {
@@ -105,6 +105,5 @@ void App::specialKeyPress(int key) {
   }else if(key == 100){
     --(*rep);
   }
-  std::cout << "Pressed " << key << std::endl;
   redraw();
 }
