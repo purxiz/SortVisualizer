@@ -1,10 +1,10 @@
 // Build a heap from an element and two proper heaps
-#include "../recorder.h"
+#include "recorder.h"
 
 //                   v2*top+1
 // arr = [...,el,...,~,~, ...]
 //            ^top   ^heads of proper heaps
-void maxHeapify(Recorder &rec, int top, int length){
+void maxHeapify(Recorder rec, int top, int length){
   while(top*2+1 < length){
     int child = top*2+1;
     if(rec.cmp(child,top)){
@@ -24,13 +24,13 @@ void maxHeapify(Recorder &rec, int top, int length){
 }
 
 // Converts an array into a heap
-void buildMaxHeap(Recorder &rec, int length){
+void buildMaxHeap(Recorder rec, int length){
   for(int i = (length+1)/2; i >= 0; i--){
     maxHeapify(rec,i,length);
   }
 }
 
-void heapSort(Recorder &rec, int length){
+void heapSort(Recorder rec, int length){
   buildMaxHeap(rec,length);
   for(int i = length-1; i > 0; i--){
     // Move the largest element to the end

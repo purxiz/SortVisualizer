@@ -1,19 +1,41 @@
 #include "App.h"
+#include "shuffle.h"
+#include "sorts.h"
 #include <iostream>
 
-App::App(const char* label, int x, int y, int w, int h): GlutApp(label, x, y, w, h){
+// For srand and time
+#include <cstdlib>
+#include <ctime>
+
+App::App(const char* label, int x, int y, int w, int h): GlutApp(label, x, y, w, h),quick(Replay(state)),heap(Replay(state)),insert(Replay(state)),slow(Replay(state)){
     // Initialize state variables
-    state.push_back(1);
-    state.push_back(2);
-    state.push_back(3);
-    state.push_back(4);
-    state.push_back(5);
-    state.push_back(6);
-    state.push_back(7);
-    state.push_back(8);
-    state.push_back(9);
+    std::srand(std::time(0));
+    for(int i = 0; i < 30; i++){
+      state.push_back(i+1);
+    }
+    shuffle(state);
     
-    step = new Step();
+    quick.getSteps().push_back(new Step());
+    quickSort(Recorder(quick.getSteps(),state),0,state.size()-1);
+    quick.gotoEnd();
+    quick.reset();
+    
+    slow.getSteps().push_back(new Step());
+    slowSort(Recorder(slow.getSteps(),state),0,state.size()-1);
+    slow.gotoEnd();
+    slow.reset();
+    
+    insert.getSteps().push_back(new Step());
+    insertionSort(Recorder(insert.getSteps(),state),state.size());
+    insert.gotoEnd();
+    insert.reset();
+    
+    heap.getSteps().push_back(new Step());
+    heapSort(Recorder(heap.getSteps(),state),state.size());
+    heap.gotoEnd();
+    heap.reset();
+    
+    rep = &quick;
 }
 
 void App::draw() {
@@ -34,7 +56,7 @@ void App::draw() {
     
     // Draw histogram
     for(int i = 0; i < state.size(); i++){
-      switch(step->getColor(i)){
+      switch(rep->step()->getColor(i)){
         case WHITE:
           glColor3f(1.0, 1.0, 1.0);
         break;
@@ -58,12 +80,31 @@ void App::draw() {
 }
 
 void App::keyPress(unsigned char key) {
-    if (key == 27){
+    std::cout << "Pressed: " <<(int) key << std::endl;
+    if(key == 'h'){
+      rep->reset();
+      rep = &heap;
+    }else if(key == 's'){
+      rep->reset();
+      rep = &slow;
+    }else if(key == 'q'){
+      rep->reset();
+      rep = &quick;
+    }else if(key == 'i'){
+      rep->reset();
+      rep = &insert;
+    }else if(key == 27){
         // Exit the app when Esc key is pressed
         exit(0);
     }
 }
 
 void App::specialKeyPress(int key) {
-    std::cout << "Pressed " << key << std::endl;
+  if(key == 102){
+    ++(*rep);
+  }else if(key == 100){
+    --(*rep);
+  }
+  std::cout << "Pressed " << key << std::endl;
+  redraw();
 }

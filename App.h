@@ -2,13 +2,14 @@
 #define App_hpp
 
 #include "GlutApp.h"
-#include "steps.h"
+#include "replay.h"
 #include <vector>
 
 class App: public GlutApp {
     // Maintain app state here
     std::vector<int> state;
-    Step* step;
+    Replay quick, heap, slow, insert;
+    Replay* rep;
 public:
     // Constructor, to initialize state
     App(const char* label, int x, int y, int w, int h);

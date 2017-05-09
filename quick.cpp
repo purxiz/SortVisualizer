@@ -1,8 +1,8 @@
-#include "../recorder.h"
+#include "recorder.h"
 
 // [s,m,a,l,l,e,r,l,a,r,g,e,r,u,n,s,o,r,t,e,d,...,pivot]
 //                ^k          ^i
-int partition(Recorder &rec, int begin, int end){
+int partition(Recorder rec, int begin, int end){
   int k = begin;
 
   for(int i = begin; i < end; i++){
@@ -16,7 +16,7 @@ int partition(Recorder &rec, int begin, int end){
   return k;
 }
 
-void quickSort(Recorder &rec, int begin, int end){
+void quickSort(Recorder rec, int begin, int end){
   if(begin>=end){
     return;
   }
