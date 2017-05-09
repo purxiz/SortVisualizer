@@ -35,7 +35,7 @@ void heapSort(Recorder &rec, int length){
   for(int i = length-1; i > 0; i--){
     // Move the largest element to the end
     rec.swap(0,i);
-
+    rec.finalize(i);
     //Reestablish the heap property
     maxHeapify(rec,0,i);
   }
