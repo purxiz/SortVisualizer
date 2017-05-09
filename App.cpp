@@ -86,7 +86,7 @@ void App::draw() {
           glColor3f(0.0, 0.0, 1.0);
         break;
       }
-      glRectf(i*width-1+spacing/2, -1,  (i*width-1+spacing/2) + width-spacing, (float)state[i]/(float)state.size()*1.98-1);
+      glRectf(i*width-1+spacing/2, -1,  (i*width-1+spacing/2) + width-spacing, (float)state[i]/(float)state.size()*1.8-1);
     }
     
     // We have been drawing everything to the back buffer
@@ -125,8 +125,18 @@ void App::keyPress(unsigned char key) {
 }
 
 void App::specialKeyPress(int key) {
-  if(key == 102){
+  if(key == 103){
+    ++(*rep);++(*rep);
+    ++(*rep);++(*rep);
+    ++(*rep);++(*rep);
     ++(*rep);
+  }else if(key == 102){
+    ++(*rep);
+  }else if(key == 101){
+    --(*rep);--(*rep);
+    --(*rep);--(*rep);
+    --(*rep);--(*rep);
+    --(*rep);
   }else if(key == 100){
     --(*rep);
   }
