@@ -8,7 +8,7 @@
 class App: public GlutApp {
     // Maintain app state here
     std::vector<int> state;
-    Replay quick, heap, slow, insert;
+    Replay quick, heap, slow, insert, shell, bubble, comb;
     Replay* rep;
 public:
     // Constructor, to initialize state

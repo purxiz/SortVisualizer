@@ -7,10 +7,11 @@
 #include <cstdlib>
 #include <ctime>
 
-App::App(const char* label, int x, int y, int w, int h): GlutApp(label, x, y, w, h),quick(Replay(state)),heap(Replay(state)),insert(Replay(state)),slow(Replay(state)){
+App::App(const char* label, int x, int y, int w, int h): GlutApp(label, x, y, w, h),quick(Replay(state)),heap(Replay(state)),insert(Replay(state)),
+                                                  shell(Replay(state)),bubble(Replay(state)),comb(Replay(state)),slow(Replay(state)){
     // Initialize state variables
     std::srand(std::time(0));
-    for(int i = 0; i < 30; i++){
+    for(int i = 0; i < 40; i++){
       state.push_back(i+1);
     }
     shuffle(state);
@@ -29,6 +30,21 @@ App::App(const char* label, int x, int y, int w, int h): GlutApp(label, x, y, w,
     insertionSort(Recorder(insert.getSteps(),state),state.size());
     insert.gotoEnd();
     insert.reset();
+    
+    bubble.getSteps().push_back(new Step());
+    bubbleSort(Recorder(bubble.getSteps(),state),state.size());
+    bubble.gotoEnd();
+    bubble.reset();
+    
+    comb.getSteps().push_back(new Step());
+    combSort(Recorder(comb.getSteps(),state),state.size());
+    comb.gotoEnd();
+    comb.reset();
+    
+    shell.getSteps().push_back(new Step());
+    shellSort(Recorder(shell.getSteps(),state),state.size());
+    shell.gotoEnd();
+    shell.reset();
     
     heap.getSteps().push_back(new Step());
     heapSort(Recorder(heap.getSteps(),state),state.size());
@@ -92,6 +108,15 @@ void App::keyPress(unsigned char key) {
     }else if(key == 'i'){
       rep->reset();
       rep = &insert;
+    }else if(key == 'l'){
+      rep->reset();
+      rep = &shell;
+    }else if(key == 'b'){
+      rep->reset();
+      rep = &bubble;
+    }else if(key == 'c'){
+      rep->reset();
+      rep = &comb;
     }else if(key == 27){
         // Exit the app when Esc key is pressed
         exit(0);
