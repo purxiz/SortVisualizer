@@ -22,10 +22,10 @@ App::App(const char* label, int x, int y, int w, int h): GlutApp(label, x, y, w,
     quick.gotoEnd();
     quick.reset();
 
-    /*slow.getSteps().push_back(new Step());
+    slow.getSteps().push_back(new Step());
     slowSort(Recorder(slow.getSteps(),state),0,state.data.size()-1);
     slow.gotoEnd();
-    slow.reset();*/
+    slow.reset();
 
     insert.getSteps().push_back(new Step());
     insertionSort(Recorder(insert.getSteps(),state),state.data.size());
