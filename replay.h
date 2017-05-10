@@ -1,13 +1,16 @@
 #ifndef REPLAY_H
 #define REPLAY_H
 #include "steps.h"
+#include "state.h"
+#include <string>
 
 class Replay {
   std::vector<Step*> steps;
   std::vector<Step*>::iterator current;
-  std::vector<int> &state;
+  State &state;
 public:
-  Replay(std::vector<int> &_state):state(_state){
+  const char * name;
+  Replay(State &_state, const char * name):state(_state), name(name){
     current = steps.begin();
   }
   ~Replay(){
@@ -29,27 +32,27 @@ public:
     }
     return *this;
   }
-  
+
   void gotoEnd(){
     current = steps.end();
     if(current != steps.begin()){
       current--;
     }
   }
-  
+
   void reset(){
     while(current != steps.begin()){
       (*current)->unexecute(state);
       current--;
     }
   }
-  
+
   Step* step(){
     return *current;
   }
   std::vector<Step*>& getSteps(){
     return steps;
   }
-  
+
 };
 #endif

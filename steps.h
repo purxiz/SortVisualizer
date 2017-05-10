@@ -2,6 +2,7 @@
 #define STEPS_H
 #include<stdlib.h>
 #include<vector>
+#include "state.h"
 
 enum color {WHITE,GREEN,RED,BLUE};
 
@@ -9,8 +10,12 @@ class Step {
 public:
   Step(){}
   virtual ~Step(){}
-  virtual void execute(std::vector<int>&){}
-  virtual void unexecute(std::vector<int>&){}
+  virtual void execute(State& state){
+    state.step++;
+  }
+  virtual void unexecute(State& state){
+    state.step--;
+  }
   virtual color getColor(size_t){return WHITE;}
 };
 
@@ -19,15 +24,17 @@ class Swap : public Step {
 public:
   Swap(size_t i, size_t j):i(i),j(j){}
   ~Swap(){}
-  void execute(std::vector<int> &state){
-    int tmp = state[i];
-    state[i] = state[j];
-    state[j] = tmp;
+  void execute(State &state){
+    Step::execute(state);
+    int tmp = state.data[i];
+    state.data[i] = state.data[j];
+    state.data[j] = tmp;
   }
-  void unexecute(std::vector<int> &state){
-    int tmp = state[i];
-    state[i] = state[j];
-    state[j] = tmp;
+  void unexecute(State &state){
+    Step::unexecute(state);
+    int tmp = state.data[i];
+    state.data[i] = state.data[j];
+    state.data[j] = tmp;
   }
   color getColor(size_t x){
     if(x == i || x == j){

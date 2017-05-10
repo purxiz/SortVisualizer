@@ -3,19 +3,23 @@
 
 #include "GlutApp.h"
 #include "replay.h"
+#include "state.h"
 #include <vector>
 
 class App: public GlutApp {
     // Maintain app state here
-    std::vector<int> state;
+    State state;
     Replay quick, heap, slow, insert, shell, bubble, comb;
     Replay* rep;
+    bool play = false;
+    int speed = 0, counter = 0;
 public:
     // Constructor, to initialize state
     App(const char* label, int x, int y, int w, int h);
-    
+
     // These are the events we want to handle
     void draw();
+    void idle();
     void keyPress(unsigned char key);
     void specialKeyPress(int key);
 };
