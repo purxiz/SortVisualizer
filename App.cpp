@@ -3,6 +3,7 @@
 #include "sorts.h"
 #include <iostream>
 #include <string>
+#include<sstream>
 
 // For srand and time
 #include <cstdlib>
@@ -71,7 +72,10 @@ void App::draw() {
     glColor3f(1.0,1.0,1.0);
     glRasterPos2f( -.95, .9);
     //std::cout << state.step << std::endl;
-    std::string pos = "step " + std::to_string(state.step) + "/" + std::to_string(rep->getSteps().size()) + "   " + rep->name + "   Speed " + std::to_string(speed);
+    
+    std::stringstream s;
+    s <<  "step " << state.step << "/" << rep->getSteps().size() << "   " << rep->name << "   Speed " << speed;
+    std::string pos = s.str();
     for(int i = 0; i < pos.length(); i++){
       glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, pos[i]);
     }

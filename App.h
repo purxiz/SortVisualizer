@@ -11,8 +11,7 @@ class App: public GlutApp {
     State state;
     Replay quick, heap, slow, insert, shell, bubble, comb;
     Replay* rep;
-    bool play = false;
-    int speed = 0, counter = 0;
+    int speed, counter;
 public:
     // Constructor, to initialize state
     App(const char* label, int x, int y, int w, int h);

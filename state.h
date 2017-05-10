@@ -3,8 +3,9 @@
 #include <vector>
 
 struct State{
-  int step = 1;
+  int step;
   std::vector<int> data;
+  State():step(1){}
 };
 
 #endif
