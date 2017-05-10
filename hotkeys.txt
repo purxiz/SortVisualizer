@@ -1,0 +1,7 @@
+H - Heap Sort
+S - Slow Sort
+Q - Quick Sort
+I - Insertion Sort
+L = Shell Sort
+B = Bubble Sort
+C = Comb Sort
