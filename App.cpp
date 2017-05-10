@@ -3,14 +3,14 @@
 #include "sorts.h"
 #include <iostream>
 #include <string>
-#include<sstream>
+#include <sstream>
 
 // For srand and time
 #include <cstdlib>
 #include <ctime>
 
 App::App(const char* label, int x, int y, int w, int h): GlutApp(label, x, y, w, h),quick(Replay(state, "Quick Sort")),heap(Replay(state, "Heap Sort")),insert(Replay(state, "Insertion Sort")),
-                                                  shell(Replay(state, "Shell Sort")),bubble(Replay(state, "Bubble Sort")),comb(Replay(state, "Comb Sort")),slow(Replay(state, "Slow Sort")){
+                                                  shell(Replay(state, "Shell Sort")),bubble(Replay(state, "Bubble Sort")),comb(Replay(state, "Comb Sort")),slow(Replay(state, "Slow Sort")),speed(0),counter(0){
     // Initialize state variables
     std::srand(std::time(0));
     for(int i = 0; i < 50; i++){
@@ -72,7 +72,7 @@ void App::draw() {
     glColor3f(1.0,1.0,1.0);
     glRasterPos2f( -.95, .9);
     //std::cout << state.step << std::endl;
-    
+
     std::stringstream s;
     s <<  "step " << state.step << "/" << rep->getSteps().size() << "   " << rep->name << "   Speed " << speed;
     std::string pos = s.str();
