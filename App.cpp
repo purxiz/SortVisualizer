@@ -12,7 +12,7 @@ App::App(const char* label, int x, int y, int w, int h): GlutApp(label, x, y, w,
                                                   shell(Replay(state, "Shell Sort")),bubble(Replay(state, "Bubble Sort")),comb(Replay(state, "Comb Sort")),slow(Replay(state, "Slow Sort")){
     // Initialize state variables
     std::srand(std::time(0));
-    for(int i = 0; i < 10000; i++){
+    for(int i = 0; i < 50; i++){
       state.data.push_back(i+1);
     }
     shuffle(state.data);
